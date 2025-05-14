@@ -16,5 +16,6 @@ public interface InternshipRepository extends JpaRepository<Internship, Integer>
     List<Internship> findByTitleOrDescriptionContaining(@Param("keyword") String keyword);
 
     // Search by track_id
-    List<Internship> findByTrackIdAndIsSoftlyDeletedFalse(Integer trackId);
+    @Query("SELECT i FROM Internship i WHERE i.track_id = :trackId AND i.isSoftlyDeleted = false")
+    List<Internship> findByTrackIdAndSoftlyDeletedFalse(@Param("trackId") Integer trackId);
 }

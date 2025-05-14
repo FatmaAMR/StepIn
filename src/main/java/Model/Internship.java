@@ -41,16 +41,12 @@ public class Internship {
     @Column(name = "is_expired")
     private boolean isExpired;
 
+    @Column(name = "company_id")
+    private int company_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
+    @Column(name = "uploaded_hr_id")
+    private int hr_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uploaded_hr_id", nullable = false)
-    private Hr hr;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "track_id", nullable = false)
-    private Track track;
+    @Column(name = "track_id")
+    private int track_id;
 }
