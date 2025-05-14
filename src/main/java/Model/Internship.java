@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class Internship {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,21 +20,37 @@ public class Internship {
     @Column(nullable = false)
     private String title;
 
-    @Column(length = 1000)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "start_date")
     private LocalDate startDate;
+
+    @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "application_end_date")
     private LocalDate applicationEndDate;
 
-    private int companyId;
-    private int uploadedHrId;
-
+    @Column(name = "location")
     private String location;
 
-    private int trackId;
-
+    @Column(name = "is_softly_deleted")
     private boolean isSoftlyDeleted;
 
+    @Column(name = "is_expired")
     private boolean isExpired;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uploaded_hr_id", nullable = false)
+    private Hr hr;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "track_id", nullable = false)
+    private Track track;
 }
